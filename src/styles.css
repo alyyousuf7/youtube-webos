@@ -1,0 +1,5 @@
+#root {
+  /* set z-index higher than .ytlr-app__overlay so things are always visible */
+  position: absolute;
+  z-index: 99;
+}
