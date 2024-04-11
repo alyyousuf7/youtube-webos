@@ -4,8 +4,8 @@ import React, { useCallback } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { useRemoteKey } from '@/Remote';
 import { RemoteKey } from '@/Remote/constants';
-import useRemoteKey from '@/Remote/useRemoteKey';
 import { SegmentCategoryLabels } from '@/SponsorBlock/constants';
 import { SegmentCategory } from '@/SponsorBlock/service';
 import useAutoPauseVideo from '@/YouTube/useAutoPauseVideo';
@@ -16,7 +16,7 @@ const ConfigDialog: React.FC<Omit<DialogProps, 'children'>> = ({ open, onOpenCha
   const { config, updateConfig } = useConfiguration();
 
   // Close the dialog when the back key is pressed
-  useRemoteKey(RemoteKey.BACK, useCallback(() => {
+  useRemoteKey(RemoteKey.BACK, 10, useCallback(() => {
     if (!open || !onOpenChange) {
       return false;
     }

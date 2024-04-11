@@ -5,9 +5,9 @@ import { Toaster } from './components/ui/toaster';
 import { useToast } from './components/ui/use-toast';
 import { ConfigProvider, useConfiguration } from './Config';
 import ConfigDialog from './Config/Dialog';
+import RemoteProvider, { useRemoteKey } from './Remote';
 import { RemoteKey } from './Remote/constants';
 import RemoteKeyLabel from './Remote/RemoteKeyLabel';
-import useRemoteKey from './Remote/useRemoteKey';
 import { SponsorBlockProvider } from './SponsorBlock';
 import SponsorBlockOverlay from './SponsorBlock/SponsorBlockOverlay';
 import useAdBlock from './useAdBlock';
@@ -20,12 +20,12 @@ const useGlobalKeyBindings = () => {
   const { toggleConfig } = useConfiguration();
   const { toast } = useToast();
 
-  useRemoteKey(RemoteKey.GREEN, useCallback(() => {
+  useRemoteKey(RemoteKey.GREEN, 0, useCallback(() => {
     setIsConfigOpen(prev => !prev);
     return true;
   }, []));
 
-  useRemoteKey(RemoteKey.RED, useCallback(() => {
+  useRemoteKey(RemoteKey.RED, 0, useCallback(() => {
     if (toggleConfig('sponsorBlockAutoSkip')) {
       toast({ description: <><SquareCheck className="inline-block h-4 w-4 text-primary" /> Turned on Auto Skip</> });
     }
@@ -59,10 +59,12 @@ const App = () => {
 };
 
 export default () => (
-  <ConfigProvider>
-    <SponsorBlockProvider>
-      <Toaster />
-      <App />
-    </SponsorBlockProvider>
-  </ConfigProvider>
+  <RemoteProvider>
+    <ConfigProvider>
+      <SponsorBlockProvider>
+        <Toaster />
+        <App />
+      </SponsorBlockProvider>
+    </ConfigProvider>
+  </RemoteProvider>
 );
