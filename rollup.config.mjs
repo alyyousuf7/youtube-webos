@@ -1,4 +1,3 @@
-import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -26,14 +25,6 @@ export default defineConfig([{
       module: 'ESNext',
     }),
     commonjs(),
-    babel({
-      babelHelpers: 'bundled',
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-react',
-      ],
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    }),
     replace({
       'preventAssignment': true,
       'process.env.NODE_ENV': JSON.stringify(CI ? 'production' : 'development'),
