@@ -4,6 +4,8 @@
 > This is currently a half-cooked project. It is expected that things will break or not work as expected.
 
 <img width="1176" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/921da4f8-7345-449d-91d6-641f042fee04">
+<img width="1302" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/dad6b1ae-f850-4853-99aa-96bd581b0306">
+
 
 ## Features
 - Ability to block YouTube Ads
@@ -12,7 +14,7 @@
   - Ability to control which segments to load
   - Ability to skip segments automatically or manually
     - Automatically: Shows a message when a segment is skipped
-    - Manually: Shows a skip button (better UI is in progress)
+    - Manually: Allows to skip manually using the RED button
     - Use RED button to quickly switch between the two modes
   - Prefers loading SponsorBlock segments privately, but fallback to loading them publicly on failure
   - Indicates on video progress bar when segments are loading

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
+import CircularProgress from '@/components/ui/circular-progress';
 import { useConfiguration } from '@/Config';
+import { useRemoteKey } from '@/Remote';
+import { RemoteKey } from '@/Remote/constants';
+import RemoteKeyLabel from '@/Remote/RemoteKeyLabel';
 import ProgressBarPortal from '@/YouTube/ProgressBarPortal';
 import usePlayer from '@/YouTube/usePlayer';
 import useVideoProgressBar from '@/YouTube/useVideoProgressBar';
+import WatchPagePortal from '@/YouTube/WatchPagePortal';
 
 import { SegmentCategoryLabels } from './constants';
 import SegmentsProgressBar from './SegmentsProgressBar';
@@ -15,10 +20,18 @@ const SponsorBlockOverlay = () => {
   const { player, videoEl } = usePlayer();
   const progressBar = useVideoProgressBar();
   const { loadingSegments, segments } = useSponsorBlock();
-  const currentSegment = useCurrentSegment(segments, videoEl);
+  const { currentSegment, countdown: segmentCountdown } = useCurrentSegment(segments, videoEl);
   const { config } = useConfiguration();
 
-  if (!player || !config.sponsorBlockEnabled) {
+  useRemoteKey(RemoteKey.RED, 10, useCallback(() => {
+    if (!player || !currentSegment) {
+      return false;
+    }
+    player.seekTo(currentSegment.segment[1]);
+    return true;
+  }, [player, currentSegment]));
+
+  if (!player || !videoEl || !config.sponsorBlockEnabled) {
     return null;
   }
 
@@ -35,9 +48,19 @@ const SponsorBlockOverlay = () => {
         </ProgressBarPortal>
       )}
       {!config.sponsorBlockAutoSkip && currentSegment && (
-        <button onClick={() => player.seekTo(currentSegment.segment[1])}>
-          Skip {SegmentCategoryLabels[currentSegment.category]}
-        </button>
+        <WatchPagePortal>
+          <div className="absolute right-0 m-2 rounded-full bg-black bg-opacity-50 pl-4 pr-2 py-2 text-center text-white">
+            <span className="relative -top-3 mr-2">
+              Press <RemoteKeyLabel remoteKey={RemoteKey.RED} /> to skip {SegmentCategoryLabels[currentSegment.category]}
+            </span>
+            <CircularProgress
+              flipH
+              value={segmentCountdown}
+              max={currentSegment.segment[1] - currentSegment.segment[0]}
+              getValueLabel={value => value > 60 ? `${Math.round(value / 60)}m` : `${Math.round(value)}s`}
+            />
+          </div>
+        </WatchPagePortal>
       )}
     </>
   );

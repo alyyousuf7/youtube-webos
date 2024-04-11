@@ -4,6 +4,7 @@ import { Segment } from './service';
 
 const useCurrentSegment = (segments: Segment[] | null, videoEl: HTMLVideoElement | null) => {
   const [currentSegment, setCurrentSegment] = useState<Segment | null>(null);
+  const [countdown, setCountdown] = useState<number>(0);
 
   useEffect(() => {
     if (!segments || !videoEl) {
@@ -15,6 +16,7 @@ const useCurrentSegment = (segments: Segment[] | null, videoEl: HTMLVideoElement
       const segment = segments.find(({ segment }) => currentTime >= segment[0] && currentTime <= segment[1]);
 
       setCurrentSegment(segment ?? null);
+      setCountdown(segment ? segment.segment[1] - currentTime : 0);
     };
 
     videoEl.addEventListener('timeupdate', onTimeUpdate);
@@ -23,7 +25,10 @@ const useCurrentSegment = (segments: Segment[] | null, videoEl: HTMLVideoElement
     };
   });
 
-  return currentSegment;
+  return {
+    currentSegment,
+    countdown,
+  };
 };
 
 export default useCurrentSegment;

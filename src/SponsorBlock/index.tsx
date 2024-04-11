@@ -26,7 +26,7 @@ export const SponsorBlockProvider = ({ children }: { children: React.ReactNode }
     (config.sponsorBlockEnabled && !video?.isShort && video?.video_id) || null,
     config.sponsorBlockSkipCategories,
   );
-  const currentSegment = useCurrentSegment(segments, videoEl);
+  const { currentSegment } = useCurrentSegment(segments, videoEl);
 
   // auto skip segment
   useEffect(() => {
