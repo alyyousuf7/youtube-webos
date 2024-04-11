@@ -1,7 +1,9 @@
 # Enhanced YouTube for webOS
 
 > [!WARNING]
-> This is currently a half-cooked project. It is expected that things will break or not work as expected.
+> This is currently a half-cooked project. It is expected that things will break or not work as expected, as it's been tested only on a very few TVs.
+>
+> If you're looking for a more stable version, head to https://github.com/webosbrew/youtube-webos.
 
 <img width="1176" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/921da4f8-7345-449d-91d6-641f042fee04">
 <img width="1302" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/dad6b1ae-f850-4853-99aa-96bd581b0306">
