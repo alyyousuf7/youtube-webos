@@ -5,13 +5,15 @@
 >
 > If you're looking for a more stable version, head to https://github.com/webosbrew/youtube-webos.
 
-<img width="1176" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/921da4f8-7345-449d-91d6-641f042fee04">
+<img width="1265" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/86a53c2d-f940-44b4-bea8-b66fa4ecd847">
 <img width="1302" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/dad6b1ae-f850-4853-99aa-96bd581b0306">
 
 
 ## Features
-- Ability to block YouTube Ads
+- Ability to block YouTube Ads (see Known Issues)
   - Blocks in-video ads by YouTube
+  - Removes YouTube Ad while exploring videos
+- Ability to remove YouTube Shorts (see Known Issues)
 - SponsorBlock segment skipping
   - Ability to control which segments to load
   - Ability to skip segments automatically or manually
@@ -21,9 +23,11 @@
   - Prefers loading SponsorBlock segments privately, but fallback to loading them publicly on failure
   - Indicates on video progress bar when segments are loading
 
+### Known Issues
+- Ads and Shorts are not blocked/removed on first page load
+
 ### Upcoming features
 - Handle Launch Parameters (I'm not really sure what features it opens up)
-- Block sponsored/ad tiles on other pages
 
 # Build and Install
 ```sh
@@ -41,8 +45,6 @@ The last command requires you to have [webOS CLI](https://webostv.developer.lge.
 - [ ] Handle Launch Parameters
 - [ ] SponsorBlock
   - [ ] Show segments with correct height for videos with chapters
-- [ ] AdBlock
-  - [ ] Block sponsored tiles
 - [ ] Other
   - [ ] Add CI to release
   - [ ] Add CI for PRs to ensure linting

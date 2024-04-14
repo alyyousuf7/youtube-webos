@@ -11,6 +11,7 @@
     "launch-ipk": "ares-launch youtube.leanback.v4"
   },
   "dependencies": {
+    "@mswjs/interceptors": "^0.27.1",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
@@ -20,6 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "js-sha256": "^0.11.0",
+    "jsonpath-plus": "^8.1.0",
     "lucide-react": "^0.364.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -2,6 +2,7 @@ import { SegmentCategory } from '@/SponsorBlock/service';
 
 export type Config = {
   adBlockEnabled: boolean;
+  shortsBlockEnabled: boolean;
   sponsorBlockEnabled: boolean;
   sponsorBlockSkipCategories: SegmentCategory[];
   sponsorBlockAutoSkip: boolean;
@@ -11,6 +12,7 @@ const LocalStorageConfigKey = 'youtube-tv-config';
 
 const DefaultConfig: Config = {
   adBlockEnabled: true,
+  shortsBlockEnabled: true,
   sponsorBlockEnabled: true,
   sponsorBlockSkipCategories: [
     SegmentCategory.SPONSOR,

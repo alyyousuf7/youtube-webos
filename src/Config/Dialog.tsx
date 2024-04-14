@@ -43,7 +43,18 @@ const ConfigDialog: React.FC<Omit<DialogProps, 'children'>> = ({ open, onOpenCha
                 updateConfig('adBlockEnabled', newValue as boolean);
               }}
             />
-            <Label htmlFor="adBlockEnabled">Enable AdBlock</Label>
+            <Label htmlFor="adBlockEnabled">Enable Ad Block</Label>
+          </div>
+
+          <div className="flex space-x-2">
+            <Checkbox
+              id="shortsBlockEnabled"
+              checked={config.shortsBlockEnabled}
+              onCheckedChange={(newValue) => {
+                updateConfig('shortsBlockEnabled', newValue as boolean);
+              }}
+            />
+            <Label htmlFor="shortsBlockEnabled">Enable Shorts Block</Label>
           </div>
 
           <div className="flex flex-col space-y-2">

@@ -5,12 +5,12 @@ import { Toaster } from './components/ui/toaster';
 import { useToast } from './components/ui/use-toast';
 import { ConfigProvider, useConfiguration } from './Config';
 import ConfigDialog from './Config/Dialog';
+import useContentBlocker from './ContentBlocker';
 import RemoteProvider, { useRemoteKey } from './Remote';
 import { RemoteKey } from './Remote/constants';
 import RemoteKeyLabel from './Remote/RemoteKeyLabel';
 import { SponsorBlockProvider } from './SponsorBlock';
 import SponsorBlockOverlay from './SponsorBlock/SponsorBlockOverlay';
-import useAdBlock from './useAdBlock';
 
 // useGlobalKeyBindings sets up the global key bindings for the application.
 //
@@ -48,7 +48,7 @@ const useGlobalKeyBindings = () => {
 
 const App = () => {
   const { isConfigOpen, setIsConfigOpen } = useGlobalKeyBindings();
-  useAdBlock();
+  useContentBlocker();
 
   return (
     <>
