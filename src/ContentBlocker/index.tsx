@@ -63,7 +63,7 @@ const useContentBlocker = () => {
   const { config } = useConfiguration();
 
   useEffect(() => {
-    if (!config.adBlockEnabled) {
+    if (!config.removeAds) {
       return;
     }
 
@@ -73,10 +73,10 @@ const useContentBlocker = () => {
         removeInterceptor();
       }
     };
-  }, [config.adBlockEnabled]);
+  }, [config.removeAds]);
 
   useEffect(() => {
-    if (!config.shortsBlockEnabled) {
+    if (!config.removeShorts) {
       return;
     }
 
@@ -86,7 +86,7 @@ const useContentBlocker = () => {
         removeInterceptor();
       }
     };
-  }, [config.shortsBlockEnabled]);
+  }, [config.removeShorts]);
 };
 
 export default useContentBlocker;

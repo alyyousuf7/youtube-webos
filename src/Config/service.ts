@@ -1,9 +1,9 @@
 import { SegmentCategory } from '@/SponsorBlock/service';
 
 export type Config = {
-  adBlockEnabled: boolean;
-  shortsBlockEnabled: boolean;
-  sponsorBlockEnabled: boolean;
+  removeAds: boolean;
+  removeShorts: boolean;
+  enableSponsorBlock: boolean;
   sponsorBlockSkipCategories: SegmentCategory[];
   sponsorBlockAutoSkip: boolean;
 };
@@ -11,9 +11,9 @@ export type Config = {
 const LocalStorageConfigKey = 'youtube-tv-config';
 
 const DefaultConfig: Config = {
-  adBlockEnabled: true,
-  shortsBlockEnabled: true,
-  sponsorBlockEnabled: true,
+  removeAds: true,
+  removeShorts: true,
+  enableSponsorBlock: true,
   sponsorBlockSkipCategories: [
     SegmentCategory.SPONSOR,
     SegmentCategory.INTRO,

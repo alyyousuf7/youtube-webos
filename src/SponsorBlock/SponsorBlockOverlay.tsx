@@ -31,7 +31,7 @@ const SponsorBlockOverlay = () => {
     return true;
   }, [player, currentSegment]));
 
-  if (!player || !videoEl || !config.sponsorBlockEnabled) {
+  if (!player || !videoEl || !config.enableSponsorBlock) {
     return null;
   }
 

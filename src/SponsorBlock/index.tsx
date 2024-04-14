@@ -23,7 +23,7 @@ export const SponsorBlockProvider = ({ children }: { children: React.ReactNode }
   const { config } = useConfiguration();
   const { toast } = useToast();
   const { loading, segments } = useSegments(
-    (config.sponsorBlockEnabled && !video?.isShort && video?.video_id) || null,
+    (config.enableSponsorBlock && !video?.isShort && video?.video_id) || null,
     config.sponsorBlockSkipCategories,
   );
   const { currentSegment } = useCurrentSegment(segments, videoEl);

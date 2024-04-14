@@ -37,36 +37,36 @@ const ConfigDialog: React.FC<Omit<DialogProps, 'children'>> = ({ open, onOpenCha
         <div className="flex flex-col space-y-2">
           <div className="flex space-x-2">
             <Checkbox
-              id="adBlockEnabled"
-              checked={config.adBlockEnabled}
+              id="removeAds"
+              checked={config.removeAds}
               onCheckedChange={(newValue) => {
-                updateConfig('adBlockEnabled', newValue as boolean);
+                updateConfig('removeAds', newValue as boolean);
               }}
             />
-            <Label htmlFor="adBlockEnabled">Enable Ad Block</Label>
+            <Label htmlFor="removeAds">Remove YouTube Ads</Label>
           </div>
 
           <div className="flex space-x-2">
             <Checkbox
-              id="shortsBlockEnabled"
-              checked={config.shortsBlockEnabled}
+              id="removeShorts"
+              checked={config.removeShorts}
               onCheckedChange={(newValue) => {
-                updateConfig('shortsBlockEnabled', newValue as boolean);
+                updateConfig('removeShorts', newValue as boolean);
               }}
             />
-            <Label htmlFor="shortsBlockEnabled">Enable Shorts Block</Label>
+            <Label htmlFor="removeShorts">Remove YouTube Shorts</Label>
           </div>
 
           <div className="flex flex-col space-y-2">
             <div className="flex space-x-2">
               <Checkbox
-                id="sponsorBlockEnabled"
-                checked={config.sponsorBlockEnabled}
+                id="enableSponsorBlock"
+                checked={config.enableSponsorBlock}
                 onCheckedChange={(newValue) => {
-                  updateConfig('sponsorBlockEnabled', newValue as boolean);
+                  updateConfig('enableSponsorBlock', newValue as boolean);
                 }}
               />
-              <Label htmlFor="sponsorBlockEnabled">Enable SponsorBlock</Label>
+              <Label htmlFor="enableSponsorBlock">Enable SponsorBlock</Label>
             </div>
 
             <div className="flex flex-col space-y-2 mx-5">

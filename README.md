@@ -5,7 +5,7 @@
 >
 > If you're looking for a more stable version, head to https://github.com/webosbrew/youtube-webos.
 
-<img width="1265" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/86a53c2d-f940-44b4-bea8-b66fa4ecd847">
+<img width="1347" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/ff8d5334-cc9e-4b03-9711-78ca09122329">
 <img width="1302" alt="image" src="https://github.com/alyyousuf7/youtube-webos/assets/14050128/dad6b1ae-f850-4853-99aa-96bd581b0306">
 
 
