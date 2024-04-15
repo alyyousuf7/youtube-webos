@@ -37,7 +37,10 @@ export default defineConfig([{
         { src: 'public/*', dest: 'dist' },
       ],
     }),
-    CI && terser(),
+    CI && terser({
+      // keep the function names so that it doesn't conflict with YouTube's code
+      keep_fnames: true,
+    }),
     process.argv.includes('--watch') && serve({
       port: 5001,
       contentBase: 'dist',
