@@ -10,10 +10,10 @@
 
 
 ## Features
-- Ability to block YouTube Ads (see Known Issues)
+- Ability to block YouTube Ads
   - Blocks in-video ads by YouTube
   - Removes YouTube Ad while exploring videos
-- Ability to remove YouTube Shorts (see Known Issues)
+- Ability to remove YouTube Shorts
 - SponsorBlock segment skipping
   - Ability to control which segments to load
   - Ability to skip segments automatically or manually
@@ -22,9 +22,6 @@
     - Use RED button to quickly switch between the two modes
   - Prefers loading SponsorBlock segments privately, but fallback to loading them publicly on failure
   - Indicates on video progress bar when segments are loading
-
-### Known Issues
-- Ads and Shorts are not blocked/removed on first page load
 
 ### Upcoming features
 - Handle Launch Parameters (I'm not really sure what features it opens up)

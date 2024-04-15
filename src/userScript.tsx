@@ -2,13 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
-import { setup as setupHTTPInterceptor } from './HTTPInterceptor';
+import { setup as setupJSONParseInterceptor } from './JSONParseInterceptor';
 import { setup as setupSpatialNavigation } from './SpatialNavigation';
 
 import './tailwind.css';
 import './styles.css';
 
-setupHTTPInterceptor();
+setupJSONParseInterceptor();
 setupSpatialNavigation();
 
 window.addEventListener('load', () => {

@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 
-import { HTTPMethod, URLPattern } from '@/HTTPInterceptor';
-
 import { useConfiguration } from '../Config';
 
 import { removeUsingJSONPath } from './utils';
@@ -22,52 +20,19 @@ const removeShortsShelf = (data: Record<string, any>) => removeUsingJSONPath(dat
   '$..contents[?(@.shelfRenderer?.tvhtml5ShelfRendererType === "TVHTML5_SHELF_RENDERER_TYPE_SHORTS")]',
 );
 
-type RequestPattern = { method: HTTPMethod; urlPattern: URLPattern };
-
-const BrowseGetRequest: RequestPattern = { method: 'GET', urlPattern: '/youtubei/v1/browse' };
-const BrowsePostRequest: RequestPattern = { method: 'POST', urlPattern: '/youtubei/v1/browse' };
-const SearchRequest: RequestPattern = { method: 'POST', urlPattern: '/youtubei/v1/search' };
-const PlayerRequest: RequestPattern = { method: 'POST', urlPattern: '/youtubei/v1/player' };
-
-const addAdBlockInterceptors = () => {
-  if (!window.httpInterceptor) {
-    return [];
-  }
-
-  return [
-    window.httpInterceptor.addInterceptor(BrowseGetRequest.method, BrowseGetRequest.urlPattern, removeAdShelf),
-    window.httpInterceptor.addInterceptor(BrowsePostRequest.method, BrowseGetRequest.urlPattern, removeAdShelf),
-    window.httpInterceptor.addInterceptor(SearchRequest.method, SearchRequest.urlPattern, removeAdShelf),
-
-    window.httpInterceptor.addInterceptor(BrowseGetRequest.method, BrowseGetRequest.urlPattern, removeAdTiles),
-    window.httpInterceptor.addInterceptor(BrowsePostRequest.method, BrowseGetRequest.urlPattern, removeAdTiles),
-    window.httpInterceptor.addInterceptor(SearchRequest.method, SearchRequest.urlPattern, removeAdTiles),
-
-    window.httpInterceptor.addInterceptor(PlayerRequest.method, PlayerRequest.urlPattern, removeAdPlacements),
-  ];
-};
-
-const addShortsBlockInterceptors = () => {
-  if (!window.httpInterceptor) {
-    return [];
-  }
-
-  return [
-    window.httpInterceptor.addInterceptor(BrowseGetRequest.method, BrowseGetRequest.urlPattern, removeShortsShelf),
-    window.httpInterceptor.addInterceptor(BrowsePostRequest.method, BrowseGetRequest.urlPattern, removeShortsShelf),
-    window.httpInterceptor.addInterceptor(SearchRequest.method, SearchRequest.urlPattern, removeShortsShelf),
-  ];
-};
-
 const useContentBlocker = () => {
   const { config } = useConfiguration();
 
   useEffect(() => {
-    if (!config.removeAds) {
+    if (!window.jsonParseInterceptor || !config.removeAds) {
       return;
     }
 
-    const removeInterceptorFns = addAdBlockInterceptors();
+    const removeInterceptorFns = [
+      window.jsonParseInterceptor.addInterceptor(removeAdShelf),
+      window.jsonParseInterceptor.addInterceptor(removeAdTiles),
+      window.jsonParseInterceptor.addInterceptor(removeAdPlacements),
+    ];
     return () => {
       for (const removeInterceptor of removeInterceptorFns) {
         removeInterceptor();
@@ -76,11 +41,13 @@ const useContentBlocker = () => {
   }, [config.removeAds]);
 
   useEffect(() => {
-    if (!config.removeShorts) {
+    if (!window.jsonParseInterceptor || !config.removeShorts) {
       return;
     }
 
-    const removeInterceptorFns = addShortsBlockInterceptors();
+    const removeInterceptorFns = [
+      window.jsonParseInterceptor.addInterceptor(removeShortsShelf),
+    ];
     return () => {
       for (const removeInterceptor of removeInterceptorFns) {
         removeInterceptor();
