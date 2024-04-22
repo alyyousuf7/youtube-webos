@@ -8,6 +8,8 @@ const useCurrentSegment = (segments: Segment[] | null, videoEl: HTMLVideoElement
 
   useEffect(() => {
     if (!segments || !videoEl) {
+      setCurrentSegment(null);
+      setCountdown(0);
       return;
     }
 
@@ -23,7 +25,7 @@ const useCurrentSegment = (segments: Segment[] | null, videoEl: HTMLVideoElement
     return () => {
       videoEl.removeEventListener('timeupdate', onTimeUpdate);
     };
-  });
+  }, [segments, videoEl]);
 
   return {
     currentSegment,
